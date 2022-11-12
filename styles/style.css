@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: #e5e5e5;
+  --base-color: 194;
+  --bg-primary-light: hsla(var(--base-color), 97%, 35%, 1);
+  --bg-primary-hover: hsla(var(--base-color), 97%, 50%, 1);
+  --bg-slider: hsla(var(--base-color), 97%, 50%, .8);
+  --primary-color: hsla(240, 6%, 21%, 1);
+  --secondary-color: hsla(0, 0%, 100%, 1);
+  --button-color: rgb(200, 200, 200);
+  font-size: 62.5%;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+input{
+  display: none;
+}
+
+label{
+  cursor: pointer;
+}
+
+button{
+  cursor: pointer;
+}
+
+.btn-mode{
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  border: none;
+  background: transparent;
+}
+
+.container{
+  display: flex;
+  width: clamp(26rem, 26rem + 30vw, 92.1rem);
+  background: rgba(255, 255, 255, 0.75);
+  margin: auto;
+  border-radius: 3rem;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.count{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time{
+  font-size: 12rem;
+  font-weight: 600;
+}
+
+.controllers{
+  display: flex;
+  gap: 3rem;
+}
+
+.controllers button{
+  border: none;
+  background: transparent;
+}
+
+@media(min-width: 940px){
+  .container{
+    width: clamp(41.2rem, 41.2rem + 30vw, 92.1rem);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .effects{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.effects{
+  display: flex;
+  gap: 3rem;
+}
+
+.btn-effect{
+  width: clamp(2rem, 1rem + 8vw, 13.8rem);
+  height: clamp(2rem, 1rem + 9vw, 15.2rem);
+  background-color: var(--button-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2.4rem;
+  box-shadow: 0px 8px 10px rgb(0 0 0 / 50%);
+  cursor: pointer;
+}
+
+.btn-effect label img{
+  width: 100%;
+  height: 100%;
+}
+
+.btn-effect:hover{
+  background: var(--bg-primary-hover);
+}
