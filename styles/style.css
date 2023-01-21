@@ -37,6 +37,7 @@ label{
 
 button{
   cursor: pointer;
+  border: none;
 }
 
 .btn-mode{
@@ -55,7 +56,7 @@ button{
   border-radius: 3rem;
   justify-content: center;
   align-items: center;
-  padding: 4rem;
+  padding: 4rem;  
   flex-direction: column;
   gap: 2rem;
 }
@@ -67,8 +68,14 @@ button{
 }
 
 .time{
-  font-size: 12rem;
+  font-size: 9rem;
   font-weight: 600;
+}
+
+@media(min-width: 768px){
+  .time{
+    font-size: 12rem;
+  }
 }
 
 .controllers{
@@ -113,8 +120,8 @@ button{
 }
 
 .btn-effect label img{
-  width: 100%;
-  height: 100%;
+  width: clamp(1rem, 0.5rem + 4vw, 13.8rem);
+  height: clamp(1rem, 0.5rem + 4.5vw, 15.2rem);
 }
 
 .btn-effect:hover{
