@@ -31,10 +31,6 @@ input{
   display: none;
 }
 
-input[type=radio]{
-  background-color: blue;
-}
-
 label{
   cursor: pointer;
 }
@@ -68,7 +64,7 @@ button{
 .count{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .time{
@@ -123,11 +119,24 @@ button{
   cursor: pointer;
 }
 
+.btn-effect label{
+  width: clamp(2rem, 1rem + 8vw, 13.8rem);
+  height: clamp(2rem, 1rem + 9vw, 15.2rem);
+  border-radius: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-effect label img{
   width: clamp(1rem, 0.5rem + 4vw, 13.8rem);
   height: clamp(1rem, 0.5rem + 4.5vw, 15.2rem);
 }
 
 .btn-effect:hover{
+  background: var(--bg-primary-hover);
+}
+
+input[type="radio"]:checked ~ label{
   background: var(--bg-primary-hover);
 }

@@ -49,3 +49,5 @@ btnMode.addEventListener("click", () => {
   theme == true ? (theme = false) : (theme = true);
   LightDarkTheme();
 });
+
+
