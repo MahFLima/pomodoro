@@ -31,6 +31,10 @@ input{
   display: none;
 }
 
+input[type=radio]{
+  background-color: blue;
+}
+
 label{
   cursor: pointer;
 }
