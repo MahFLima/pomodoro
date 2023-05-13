@@ -4,8 +4,10 @@ const btnEffect = document.querySelectorAll('input[type="radio"]');
 let theme = false;
 var audio = new Audio();
 
+
+
 function audioPlay(value){
-  audio.src = `./assets/sound/${value}.wav`
+  audio.src = `../assets/sound/${value}.wav`
   audio.play()
   audio.loop = true;
 }

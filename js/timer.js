@@ -1,69 +1,84 @@
 const controls = document.querySelectorAll(".controls");
 const alarm = new Audio("../assets/sound/kichen-timer.mp3");
+const click = new Audio("../assets/sound/button-press.wav")
 const time = document.querySelector(".time");
+const imgIconPlayPause = document.querySelector(".play-pause");
 let isPlaying = false;
 let minutes = 0;
 let seconds = 0;
 let teste = 10;
 let timeId
 
-function startTimer(m) {
-
-  timerId = setInterval(updateTimer(m), 1000);
-
-  function updateTimer(value) {
-    console.log("Contador:", value);
-    value--;
-  
-    // Verificando se o contador atingiu um determinado valor
-    if (value < 0) {
-      console.log("Contagem concluída!");
-      clearInterval(intervalId);
-    }
+function verifyTimer(m,s){
+  if(s<1){
+    time.textContent = `${m}:00`
+  } else if(s<1 && m<10){
+    time.textContent = `0${m}:00`
+  } else if(s<10 && m<10){
+    time.textContent = `0${m}:0${s}`
+  } else if(m<10){
+    time.textContent = `0${m}:${s}`
+  } else {
+    time.textContent = `${m}:${s}`
   }
+
+  
 }
+
 
 controls.forEach((control) => {
   control.addEventListener("click", () => {
     var timeInicial = time.textContent;
     var timeResult = timeInicial.split(":");
-    var intervalId
     minutes = parseFloat(timeResult[0]);
     seconds = parseFloat(timeResult[1]);
 
     if (control.id == "up") {
       minutes = minutes + 1;
-      time.textContent = `${minutes.toString()}:${
+      time.textContent = `${minutes < 10 ? `0${minutes.toString()}` : minutes.toString()}:${
         seconds <= 0 ? "00" : seconds.toString()
-      }`;
+    }`
     } else if (control.id == "down") {
       minutes = minutes - 1;
-      time.textContent = `${minutes.toString()}:${
+      time.textContent = `${minutes < 10 ? `0${minutes.toString()}` : minutes.toString()}:${
         seconds <= 0 ? "00" : seconds.toString()
-      }`;
+    }`;  
+
     } else if (control.id == "play") {
       isPlaying ? (isPlaying = false) : (isPlaying = true);
-      const imgIcon = control.querySelector("img");
+      click.play(alarm )
       if (isPlaying) {
-        imgIcon.setAttribute("src", "assets/images/pause.svg");
-        const intervalId = setInterval(() => {
-          console.log("Contador:", minutes);
-          minutes--;
-        
+        imgIconPlayPause.setAttribute("src", "../assets/images/pause.svg");
+        timeId = setInterval(() => {
+          verifyTimer(minutes, seconds)
+          seconds--
+
+          if(seconds < 1){
+            minutes--
+            seconds = 59
+          }
+          
           // Verificando se o contador atingiu um determinado valor
           if (minutes < 0) {
             console.log("Contagem concluída!");
-            clearInterval(intervalId);
+            clearInterval(timeId);
+            alarm.play()
+            imgIconPlayPause.setAttribute("src", "../assets/images/play.svg");
+            isPlaying = false
+            time.textContent = "25:00"
           }
         }, 1000);
       } else {
-        imgIcon.setAttribute("src", "assets/images/play.svg");
+        imgIconPlayPause.setAttribute("src", "../assets/images/play.svg");
+        clearInterval(timeId);
       }
     }
 
     if (control.id == "stop") {
       time.textContent = "25:00";
-      clearInterval(intervalId);
+      clearInterval(timeId);
+      imgIconPlayPause.setAttribute("src", "../assets/images/play.svg");
+      isPlaying = false
       // teste(minutes)
     }
   });
