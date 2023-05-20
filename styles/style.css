@@ -38,7 +38,9 @@ label{
 button{
   cursor: pointer;
   border: none;
+  color: black;
 }
+
 
 .btn-mode{
   position: absolute;

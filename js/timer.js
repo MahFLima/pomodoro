@@ -6,23 +6,24 @@ const imgIconPlayPause = document.querySelector(".play-pause");
 let isPlaying = false;
 let minutes = 0;
 let seconds = 0;
-let teste = 10;
 let timeId
 
 function verifyTimer(m,s){
-  if(s<1){
+  if(s<1 && m>9){
     time.textContent = `${m}:00`
-  } else if(s<1 && m<10){
+  }else if(m < 10 && s < 1){
     time.textContent = `0${m}:00`
-  } else if(s<10 && m<10){
-    time.textContent = `0${m}:0${s}`
-  } else if(m<10){
+  } else if(s<10 && m>9){
+    time.textContent = `${m}:0${s}`
+  } else if(m<1 && s<10){
+    time.textContent = `00:0${s}`
+  } else if(m<10 && s>9){
     time.textContent = `0${m}:${s}`
+  } else if(m<10 && s<10){
+    time.textContent = `0${m}:0${s}`
   } else {
     time.textContent = `${m}:${s}`
-  }
-
-  
+  }  
 }
 
 
@@ -32,6 +33,7 @@ controls.forEach((control) => {
     var timeResult = timeInicial.split(":");
     minutes = parseFloat(timeResult[0]);
     seconds = parseFloat(timeResult[1]);
+    click.play(alarm)
 
     if (control.id == "up") {
       minutes = minutes + 1;
@@ -46,7 +48,6 @@ controls.forEach((control) => {
 
     } else if (control.id == "play") {
       isPlaying ? (isPlaying = false) : (isPlaying = true);
-      click.play(alarm )
       if (isPlaying) {
         imgIconPlayPause.setAttribute("src", "../assets/images/pause.svg");
         timeId = setInterval(() => {
